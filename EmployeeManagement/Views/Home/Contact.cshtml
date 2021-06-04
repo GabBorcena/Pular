@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<div>
+    <div style="margin:10px">
+        <div class="row">
+            <div id="Contact">
+                <h2>Contact Us</h2>
+                <h5>
+                    For inquiries, please email us using the form below.
+                </h5>
+                <br />
+                <select id="selectServices">
+                    <option value="0">-- Select Services --</option>
+                    <option value="Design"> Design</option>
+                    <option value="Transformer"> Transformer</option>
+                    <option value="Substation"> Substation</option>
+                    <option value="Other"> Other</option>
+                </select>
+            </div>
+            <div class="row">
+                <div id="MessageBox">
+                    <br />
+                    <textarea type="text" style="width:600px;height:150px" placeholder="Message" id="MessageInput"></textarea>
+                    <br />
+                </div>
+            </div>
+            <div class="row">
+                <div id="Submit">
+                    <br />
+                    <button class="btn btn-submit" type="submit" id="btnSubmit" style=" width: 150px;">Submit  </button>
+                    <button class="btn btn-submit" type="button" id="btnCancel" style=" width: 150px;">Cancel </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-alert">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Message from WebPage</h4>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left modalClose" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<script type="text/javascript">
+    function ValidateRequest() {
+        if ($('#MessageInput').val() == "" || $('#MessageInput').val() == null) {
+            SystemMessage("Message is Required.");
+        }
+        if ('@Session["USER_SESSION"]' == "") { 
+            window.location.href = '@Url.Action("Login", "Account")';
+        }
+    }
+    function SystemMessage(message) {
+        $("#modal-alert > .modal-dialog > .modal-content > .modal-body").html("<p>" + message + "</p>");
+        $('#modal-alert').modal('show');
+    }
+</script>
+<script type="text/javascript"> 
+
+    $(document).ready(function () {
+        $('#MessageBox').hide();
+        $('#Submit').hide();
+    });
+
+    $('#selectServices').change(function () {
+        if ($('#selectServices option:selected').val() == "0") {
+            $('#MessageBox').hide();
+            $('#Submit').hide();
+        }
+        else {
+            $('#MessageBox').show();
+            $('#Submit').show();
+        }
+    });
+
+    $('#btnSubmit').click(function () {
+        if (!ValidateRequest()) {
+            return false;
+        }
+
+        //Save data(UserNm,Message,Category) to JSON File .
+    });
+</script>
+<style>
+    #Contact {
+        text-align: center;
+        border: 0px thin #f0f0f0;
+    }
+
+    #Submit {
+        text-align: center;
+        border: 0px thin #f0f0f0;
+    }
+
+    #MessageBox {
+        text-align: center;
+        border: 0px thin #f0f0f0;
+    }
+
+    #selectServices {
+        width: 600px;
+        height: 35px;
+    }
+
+    input, select, textarea {
+        max-width: 1000px;
+    }
+
+    .btn-submit:hover {
+        color: #fff;
+        background-color: #3e3737;
+        border-color: #3e3737;
+    }
+
+    .btn-submit {
+        color: #fff;
+        background-color: #595959;
+        border-color: #595959;
+    }
+
+        .btn-submit:focus {
+            color: #fff;
+            background-color: #595959;
+            border-color: #595959;
+        }
+
+        .btn-submit:active {
+            color: #fff;
+            background-color: #595959;
+            border-color: #595959;
+        }
+</style>

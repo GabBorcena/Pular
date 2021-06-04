@@ -1,0 +1,140 @@
+﻿@model EmployeeManagement.ViewModel.ViewFormViewModel
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("About", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+             <div> 
+                <div style="margin:10px">
+                    <div class="row">
+                        <div id="aboutHeader">
+                            <h4><b>Our Team</b></h4>
+                            <h2>We're all about teamwork.</h2>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div id="DivEmpProfile">
+                            <div class="col-sm-2">
+                                <img src="~/Images/default-user.jpg" width="150" height="150" style="border-radius: 70%;" id="userprofile" />
+                                <span class="text-red" id="errorEmpProfile" name="errorEmpProfile"></span>
+                            </div>
+                        </div>
+                        <div id="DivEmpDetails">
+                            <div class="col-sm-4">
+                                <h3>Gabriel Borcena</h3>
+
+                                <h5>Team Lead Application Development(2018)</h5>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="DivEmpProfile">
+                            <div class="col-sm-2">
+                                <img src="~/Images/default-user.jpg" width="150" height="150" style="border-radius: 70%;" id="userprofile" />
+                                <span class="text-red" id="errorEmpProfile" name="errorEmpProfile"></span>
+                            </div>
+                        </div>
+                        <div id="DivEmpDetails">
+                            <div class="col-sm-3">
+                                <h3>Casdel Gomez</h3>
+
+                                <h5>Sr.Application Developer(2019)</h5>
+                                <br />
+
+                            </div>
+                        </div>
+
+                        <div id="DivEmpProfile">
+                            <div class="col-sm-3">
+                                <img src="~/Images/default-user.jpg" width="150" height="150" style="border-radius: 70%;" id="userprofile" />
+                                <span class="text-red" id="errorEmpProfile" name="errorEmpProfile"></span>
+                            </div>
+                        </div>
+                        <div id="DivEmpDetails">
+                            <div class="col-sm-4">
+                                <h3>Eric Pualengco</h3>
+
+                                <h5>Sr.Application Developer(2020)</h5>
+                                <br />
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div id="DivEmpProfile">
+                            <div class="col-sm-2">
+                                <img src="~/Images/default-user.jpg" width="150" height="150" style="border-radius: 70%;" id="userprofile" />
+                                <span class="text-red" id="errorEmpProfile" name="errorEmpProfile"></span>
+                            </div>
+                        </div>
+                        <div id="DivEmpDetails">
+                            <div class="col-sm-3">
+                                <h3>Bryan Galacio</h3>
+
+                                <h5>Sr.Application Developer(2019)</h5>
+                                <br />
+                            </div>
+                        </div>
+
+                        <div id="DivEmpProfile">
+                            <div class="col-sm-3">
+                                <img src="~/Images/default-user.jpg" width="150" height="150" style="border-radius: 70%;" id="userprofile" />
+                                <span class="text-red" id="errorEmpProfile" name="errorEmpProfile"></span>
+                            </div>
+                        </div>
+                        <div id="DivEmpDetails">
+                            <div class="col-sm-4">
+                                <h3>Armani Joson</h3>
+
+                                <h5>Jr.Application Developer(2020)</h5>
+                                <br />
+
+                            </div>
+                        </div>
+
+                    </div> 
+                </div>
+                 
+
+            </div> 
+    <style>
+        h2, .h2 {
+            color: #2EC4B6;
+        }
+
+        h6, .h6 {
+            color: #e71d36;
+        }
+
+        b, .b {
+            color: black;
+        }
+
+        p, .p {
+            color: black
+        }
+
+        #userprofile:hover {
+            transform: scale(1.01);
+        }
+
+        #userprofile {
+            border:thin;
+            border-color: #eae4e4
+        }
+        #aboutHeader {
+            text-align: center;
+            border: 0px thin #f0f0f0;
+        }
+        .row {
+            margin-top:20px
+        }
+    </style> 
+
+}
+

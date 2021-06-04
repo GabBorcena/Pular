@@ -1,0 +1,147 @@
+﻿@model EmployeeManagement.ViewModel.ViewFormViewModel
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <h2 class="wsite-content-title" style="text-align:center;"><strong><font color="#2a2a2a" size="5">Pular Electrical Services and Supply.</font><br><font size="1"> B6 Lot 27 Phase 1 BFF-HOA Brgy. Narra Francisco Homes 3023 San Jose Del Monte Bulacan PH&nbsp;0942-434-2288 | pularelectricalservices@yahoo.com<br>&#8203;</font></strong></h2>
+    <div class="container"> 
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" ></li>
+                <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="~/Images/ai-banner.jpg" width="1130" height="500" style="width: 1130px; height: 500px;" />
+                </div>
+
+                <div class="item">
+                    <img src="~/Images/ai-banner2.jpg" width="1130" height="500" style="width: 1130px; height: 500px;" />
+                </div>
+
+                <div class="item">
+                    <img src="~/Images/ai-banner3.jpg" width="1130" height="500" style="width: 1130px; height: 500px;" />
+                </div>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div> 
+    <div>
+        <div class="row">
+            <div id="box1" class="col-sm-3">
+                <h3>In 1995</h3>
+                <h5>Company Establishment</h5>
+            </div>
+            <div id="box1" class="col-sm-3">
+                <h3>In 2003</h3>
+                <h5>Top performing company in Central Luzon</h5>
+            </div>
+
+            <div id="box2" class="col-sm-3">
+                <h3>In 2007</h3>
+                <h5>Rated as AAA gold medal unit in quality, service and reputation</h5>
+            </div>
+
+            <div id="box3" class="col-sm-3">
+                <h3>36000 m²</h3>
+                <h5>Factory building of the company's own industrial park</h5>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div style="margin:10px">
+            <div class="row">
+                <div id="ourVision">
+                    <h2>Our Vision</h2>
+                    <br />
+                    <h5>
+                        As its eternal target, PESS collects the global resources to manufacture the best transformers and provides value services for clients. <br /> 
+                        We expect moving to the beautiful tomorrow together with you while keeping on innovation!
+                    </h5>
+                    <br />
+                </div>
+            </div>
+            <div class="row">
+                <div id="ourServices">
+                    <h2>Our Service</h2>
+                    <br />
+                    <h5>
+                        We enhance our business operations by performing them efficiently, swiftly, and accurately, by keeping our promises,
+                        and by <br /><br />advancing our information system. More importantly, we maintain close communications with our customers<br /><br />
+                        and satisfy each customer expectations by providing solutions from there view points.
+                    </h5>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        #ourVision {
+            text-align: center;
+            border: 0px thin #f0f0f0;
+        }
+        #ourServices {
+            text-align: center;
+            border: 0px thin #f0f0f0;
+        }
+
+
+        #box1 {
+            text-align: center;
+            border: 0px thin #f0f0f0;
+        }
+
+        #box2 {
+            text-align: center;
+            border: 0px thin #f0f0f0;
+        }
+
+        #box3 {
+            text-align: center;
+            border: 0px thin #f0f0f0;
+        }
+
+        #box1:hover {
+            transform: scale(1.2);
+        }
+
+        #box2:hover {
+            transform: scale(1.2);
+        }
+
+        #box3:hover {
+            transform: scale(1.2);
+        }
+
+        #ourVision:hover {
+            transform: scale(1.1);
+        }
+        #ourServices:hover {
+            transform: scale(1.1);
+        }
+
+        #imageBanner:hover {
+            transform: scale(1.005);
+        }
+    </style>
+}

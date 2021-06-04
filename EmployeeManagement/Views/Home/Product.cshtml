@@ -1,0 +1,291 @@
+﻿@model EmployeeManagement.ViewModel.ViewFormViewModel
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+@using (Html.BeginForm("Product", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div id="divProduct">
+        <div class="row" style="margin-top:35px;margin-left:25px;"><h3><strong>Product Center</strong></h3></div>
+        <!--2nd Row-->
+        <div class="row" style="margin-left:25px;">
+
+            @if (Model.productModel.Count() > 0)
+            {
+                for (int i = 0; i < Model.productModel.Count; i++)
+                {
+                    <div class="col-md-2  divProductcontainer">
+                        <div class="divInternalProductcontainer">
+                            <div class="row">
+                                <div id="product-category"><label id="lbl-product-category"><strong>@Html.DisplayFor(x => Model.productModel[i].ProductDescription)</strong></label></div>
+                            </div>
+                            <div class="row">
+                                <div id="product-label"><label id="lbl-product-label"><strong>@Html.DisplayFor(x => Model.productModel[i].ProductNm)</strong></label></div>
+                            </div>
+                            <div>
+                                <div><img src="~/Images/Products/@Html.DisplayFor(x => Model.productModel[i].ProductImage)" style="width:150px" /></div>
+                            </div>
+                        </div>
+
+                        <div id="divDetails">
+                            <div class="pull-left">
+                                <h4>$@Html.DisplayFor(x => Model.productModel[i].ProductPrice)</h4>
+                            </div>
+                            <div class="pull-right">
+                                <a href="@Url.Action("Buy", "Home", new { id = @Html.DisplayFor(x => Model.productModel[i].ProductId) })">&equiv;</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+    @*
+        <div class="modal modal-default fade" id="modal-cart">
+            <div class="modal-lg">
+                <div class="modal-content">
+                    <div class="modal-title">
+                    </div>
+                    <div class="modal-body">
+                        <div class="box box-primary">
+                            <div class="box-body">
+                                <div class="box-body">
+                                    <table cellpadding="2" cellspacing="2" border="1">
+                                        <tr>
+                                            <th>Option</th>
+                                            <th>Name</th>
+                                            <th>Category</th>
+                                            <th>Image</th>
+                                            <th>Qty</th>
+                                            <th>Price</th>
+                                        </tr>
+                                        @if (Model.ProductItem.Count() > 0)
+                                        {
+                                            for (int i = 0; i < Model.ProductItem.Count; i++)
+                                            {
+                                                <tr>
+                                                    <td><a href="@Url.Action("Remove", "ShoppingCart", new { id = @Html.DisplayFor(x => Model.productModel[i].ProductNm) })">Remove</a></td>
+                                                    <td>@Html.DisplayFor(x => Model.productModel[i].ProductNm)</td>
+                                                    <td>@Html.DisplayFor(x => Model.productModel[i].ProductDescription)</td>
+                                                    <td><img src="~/Content/Images/@Html.DisplayFor(x => Model.productModel[i].ProductImage)" width="60" /> </td>
+                                                    <td>@Html.DisplayFor(x => Model.productModel[i].ProductQty)</td>
+                                                    <td>@Html.DisplayFor(x => Model.productModel[i].ProductPrice)</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-sm pull-right btnCloseCartModal" id="btnCloseCartModal" data-dismiss="modal" style="width: 120px">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+}
+  
+
+<script type="text/javascript">
+    /*$('.AddToCart').click(function () {
+        var pname = $(this).data('name');
+        var pdescription = $(this).data('description');
+        var pprice = $(this).data('price');
+        var pquantity = "1";
+
+        if ($('#productModel > tbody > tr > td').html() == 'No items to display.') {
+            $('#productModel > tbody').html('');
+        }
+        var tblBody = document.getElementById('productModel').getElementsByTagName('tbody')[0];
+        var rowCount = tblBody.rows.length;
+        var trDetails = document.createElement('tr');
+
+        var textnodepname = document.createTextNode(pname);
+        var tdpname = document.createElement('td');
+        tdpname.appendChild(textnodepname);
+
+        var textnodepdescription = document.createTextNode(pdescription);
+        var tdpdescription = document.createElement('td');
+        tdpdescription.appendChild(textnodepdescription);
+
+        var textnodepquantity = document.createTextNode(pquantity);
+        var tdpquantity = document.createElement('td');
+        tdpquantity.appendChild(textnodepquantity);
+
+        var textnodepprice = document.createTextNode(pprice);
+        var tdpprice = document.createElement('td');
+        tdpprice.appendChild(textnodepprice);
+
+        var tdActions = document.createElement('td');
+
+        $('<input>').attr({
+            type: 'hidden', id: 'productModel_' + rowCount + '__ProductNm', name: 'productModel[' + rowCount + '].ProductNm',
+            value: pname
+        }).appendTo(tdActions);
+
+        $('<input>').attr({
+            type: 'hidden', id: 'productModel_' + rowCount + '__ProductDescription', name: 'productModel[' + rowCount + '].ProductDescription',
+            value: pdescription
+        }).appendTo(tdActions);
+
+        $('<input>').attr({
+            type: 'hidden', id: 'productModel_' + rowCount + '__ProductQty', name: 'productModel[' + rowCount + '].ProductQty',
+            value: pquantity
+        }).appendTo(tdActions);
+
+        $('<input>').attr({
+            type: 'hidden', id: 'productModel_' + rowCount + '__ProductPrice', name: 'productModel[' + rowCount + '].ProductPrice',
+            value: pprice
+        }).appendTo(tdActions);
+
+        htmlActions = '<button class="btn btn-sm btn-danger btn-sm btnRemoveDetails" style="margin-right:10px;" type="button">Remove</button >';
+
+        tdActions.insertAdjacentHTML('beforeend', htmlActions);
+
+        trDetails.appendChild(tdpname);
+        trDetails.appendChild(tdpdescription);
+        trDetails.appendChild(tdpquantity);
+        trDetails.appendChild(tdpprice);
+        tblBody.appendChild(trDetails);
+
+        $('#modal-cart').modal('show');
+    });
+
+
+    $('#gotoCart').click(function () {
+        $('#modal-cart').modal('show');
+    });
+
+    $('#btnCloseCartModal').click(function () {
+        $('#modal-cart').modal('hide');
+
+    });*/
+
+</script>
+
+<style>
+    .divProductcontainer {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 5px;
+        height: 270px;
+        padding: 10px;
+        border: 2px solid #cec8c8;
+        background-color: white;
+        border-radius: 5px;
+        opacity: 1;
+    }
+
+        .divProductcontainer:hover {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            height: 270px;
+            padding: 10px;
+            border: 2px solid #fb6c0e;
+            background-color: white;
+            border-radius: 5px;
+            opacity: 1;
+        }
+
+    #divProduct {
+        align-content: center;
+        border: 0px thin #f0f0f0;
+    }
+
+    .AddToCart {
+        font-size: 35px;
+        color: #cec8c8;
+    }
+
+    #ViewProduct {
+        margin-top: 5px;
+        border-color: #D10024;
+        color: white;
+        background-color: #D10024;
+        align-content: center;
+        width: 50px;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+        border-bottom-left-radius: 7px;
+        border-bottom-right-radius: 7px;
+    }
+
+    .divInternalProductcontainer {
+        margin: 10px;
+    }
+
+    #product-category {
+        text-align: -webkit-center;
+    }
+
+    #product-label {
+        text-align: -webkit-center;
+    }
+
+    #lbl-product-category {
+        text-transform: uppercase;
+        font-size: 18px;
+        font-weight: 700
+    }
+
+    #lbl-product-label {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 100;
+    }
+
+    #btnViewBuy {
+        margin-left: 5px
+    }
+
+    #divDetails {
+        border-top: 2px solid #cec8c8;
+    }
+
+    .divProductcontainer:hover #divDetails {
+        border-top: 2px solid #fb6c0e;
+    }
+
+        .divProductcontainer:hover #divDetails h4 {
+            font-weight: 900
+        }
+
+        .divProductcontainer:hover #divDetails .AddToCart {
+            font-size: 35px;
+            color: #fb6c0e;
+        }
+
+
+    .modalload {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: black;
+        z-index: 99;
+        opacity: 0.8;
+        filter: alphaopacity=80;
+        -moz-opacity: 0.8;
+        min-height: 100%;
+        width: 100%;
+    }
+
+    .align-amount {
+        text-align: right;
+    }
+
+    #modal-cart {
+        align-self: center;
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+</style>

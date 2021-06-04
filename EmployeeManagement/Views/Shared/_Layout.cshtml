@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>@ViewBag.Title - Pular Electrical Services and Supply</title>  
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+    <style>
+        /**Animation for loading screen*/
+        .no-js #loader {
+            display: none;
+        }
+
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url(https://miro.medium.com/max/1200/1*zzfBaikpRrFKxiQI6odLQw.gif) center no-repeat #fff;
+        }
+
+        @@media screen and (min-width: 768px) {
+            .mobile-nav {
+                display: none;
+            }
+        } 
+
+        @@media screen and (max-width: 767px) { 
+            .browser-nav {
+                display: none;
+            } 
+        }
+ 
+        /*End*/
+    </style>
+    <script type="text/javascript">
+        $(window).load(function () {
+            // Animate loader off screen 
+            $(".se-pre-con").fadeOut("slow");;
+        });
+    </script>
+</head>
+
+<body style="background-color:snow">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="browser-nav">
+                <div class="navbar-collapse collapse pull-left">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <img src="~/Images/Pess-logo.png" id="logo">
+                        </li>
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Product", "Product", "Home")</li>
+                    </ul>
+                </div>
+
+                <div class="navbar-collapse collapse pull-right">
+
+                    @if (Session["USER_SESSION"] == null)
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <div class="navbar">
+                            <div class="dropdown">
+                                <button class="dropbtn">
+                                    <strong>Account</strong>
+                                </button>
+                                <div class="dropdown-content pull-right">
+                                    <a href="#">Settings</a>
+                                    @Html.ActionLink("About Developer", "About", "Home")
+                                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { role = "form" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <a href="#" onclick="$('#btnSubmitLogout').click();">Logout</a>
+                                        <div class="hidden">
+                                            <button type="submit" class="form-group" id="btnSubmitLogout" style="visibility:hidden">Logout</button>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="mobile-nav">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <img src="~/Images/Pess-logo.png" id="logo">
+                        </li>
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Product", "Product", "Home")</li>
+                    </ul> 
+
+                    @if (Session["USER_SESSION"] == null)
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <div class="navbar">
+                            <div class="dropdown">
+                                <button class="dropbtn">
+                                    <strong>Account</strong>
+                                </button>
+                                <div class="dropdown-content">
+                                    <a href="#">Settings</a>
+                                    @Html.ActionLink("About Developer", "About", "Home")
+                                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { role = "form" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <a href="#" onclick="$('#btnSubmitLogout').click();">Logout</a>
+                                        <div class="hidden">
+                                            <button type="submit" class="form-group" id="btnSubmitLogout" style="visibility:hidden">Logout</button>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content" id="allButFooter">
+
+        @RenderBody()
+        <!--Loading Screen-->
+        <div class="se-pre-con"></div>
+    </div>
+    <!--Footer-->
+    <footer style="background-color:#595959;height:auto;">
+        <div style="margin-left: 50px; margin-right: 50px; margin-top:25px;">
+            <br />
+            <h4 style="color: white;">Pular Electrical Services and Supply</h4>
+            <p style="color: #b9b3b3;">
+                Tel: &nbsp; 0942-434-2288 / 0915-361-7428
+            </p>
+            <p style="color: #b9b3b3;">
+                Mailbox:&nbsp; pularelectricalservices@yahoo.com
+            </p>
+            <br />
+            <hr />
+            <p style="color: #b9b3b3;">&copy; Copyright @DateTime.Now.Year - PESS </p>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap") 
+    @Styles.Render("~/Content/cssBundles")
+    @RenderSection("scripts", required: false)
+    <style>
+        .navbar-inverse .navbar-toggle .icon-bar {
+            background-color: #000;
+        }
+        .dropdown {
+            float: right;
+        } 
+        .dropdown .dropbtn {
+            font-size: 18px;
+            border: none;
+            outline: none;
+            color: black;
+            padding: 14px 20px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        } 
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+
+
+        .navbar-inverse .navbar-nav > li > a {
+            color: black;
+            font-size: large;
+            font-weight: 700
+        }
+
+
+        .navbar-inverse .navbar-nav > li > a:hover {
+            color: dimgray;
+            font-size: large;
+            font-weight: 700
+        }
+
+        .navbar-inverse {
+            background-color: #fffafad9;
+            border-color: #fffafad9;
+        }
+
+        #allButFooter {
+            min-height: calc(100vh - 55px);
+        }
+
+        #logo {
+            width: 100px;
+        }
+        
+
+    </style>
+</body>
+</html>
